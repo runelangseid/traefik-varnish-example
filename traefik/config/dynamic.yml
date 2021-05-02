@@ -1,0 +1,31 @@
+tcp:
+  services:
+    varnish:
+      loadBalancer:
+        proxyProtocol:
+          version: 2
+        servers:
+        - address: "varnish:8443"
+
+  routers:
+    varnish-router:
+      #rule: "PathPrefix(`/`)"
+      rule: "HostSNI(`*`)"
+      service: "varnish"
+      entrypoints:
+        - "proxyprotocol"
+
+http:
+  routers:
+    http-router:
+      rule: "PathPrefix(`/`)"
+      #rule: "Host(`example.com`) || Host(`www.example.com`)"
+      service: "varnish"
+      entrypoints:
+        - "http"
+
+  services:
+    varnish:
+      loadBalancer:
+        servers:
+        - url: "http://varnish:80/"

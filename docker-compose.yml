@@ -15,7 +15,9 @@ services:
   # 8443 is proxy protocol
   varnish:
     container_name: "varnish"
-    image: "varnish:6"
+    # image: "varnish:6"
+    # image: "varnish:6.0.3"
+    image: "varnish:6.0.7-1"
     ports:
       - "8442:80"
       - "8443:8443"
@@ -33,3 +35,15 @@ services:
       - "8181:81"
     volumes:
       - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+
+  traefik:
+    image: "traefik:v2.4"
+    container_name: "traefik"
+    ports:
+      - "80:80"
+      - "81:81"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - ./traefik/config:/etc/traefik/config:ro
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/log:/logs:rw

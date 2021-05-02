@@ -1,0 +1,22 @@
+log:
+  level: "DEBUG"
+  filePath: "/logs/file.log"
+
+accessLog:
+  filePath: "/logs/access.log"
+  bufferingSize: 100
+
+api:
+  dashboard: true
+  debug: true
+
+## Static configuration
+entryPoints:
+  http:
+    address: ":80"
+  proxyprotocol:
+    address: ":81"
+
+providers:
+  file:
+    directory: "/etc/traefik/config"
