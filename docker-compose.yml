@@ -1,0 +1,35 @@
+version: "3.3"
+
+services:
+  # Welcome to nginx on port 8080
+  nginx:
+    container_name: "nginx"
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - "./nginx/index.html:/usr/share/nginx/html/index.html"
+
+  # varnish
+  # 8442 is http
+  # 8443 is proxy protocol
+  varnish:
+    container_name: "varnish"
+    image: "varnish:6"
+    ports:
+      - "8442:80"
+      - "8443:8443"
+    volumes:
+      - "./varnish/default.vcl:/etc/varnish/default.vcl:ro"
+
+  # haproxy
+  # 8180 is http
+  # 8181 contacts varnish using proxy protocol
+  haproxy:
+    container_name: "haproxy"
+    image: "haproxy"
+    ports:
+      - "8180:80"
+      - "8181:81"
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
