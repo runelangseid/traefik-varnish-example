@@ -1,9 +1,9 @@
 <ul>
-  <li><a href="//localhost:8080">nginx on port 8080:80</a></li>
-  <li><a href="//localhost:8442">varnish:8442 (http) -> nginx:80</a></li>
-  <li><a href="//localhost:8443">varnish:8443 (proxy proto - does not work over http)-> nginx:80</a></li>
+  <li><a href="//localhost:8090">nginx on port 8090:80</a></li>
+  <li><a href="//localhost:7442">varnish:7442 (http) -> nginx:80</a></li>
+  <li><a href="//localhost:7443">varnish:7443 (proxy proto - does not work over http)-> nginx:80</a></li>
   <li><a href="//localhost:8180">haproxy:8180 -> varnish:80 (http) -> nginx:80</a></li>
   <li><a href="//localhost:8181">haproxy:8181 -> varnish:8443 (proxy protocol) -> nginx:80 - This is what we want with Traefik</a></li>
-  <li><a href="//localhost:80">traefik:80 -> varnish:80 (http) -> nginx:80</a></li>
-  <li><a href="//localhost:81">traefik:81 -> varnish:8443 (proxy protocol) -> nginx:80 - Todo</a></li>
+  <li><a href="//localhost:680">traefik:680 -> varnish:80 (http) -> nginx:80</a></li>
+  <li><a href="//localhost:681">traefik:681 -> varnish:8443 (proxy protocol) -> nginx:80 - Todo</a></li>
 </ul>

@@ -1,26 +1,28 @@
 version: "3.3"
 
 services:
-  # Welcome to nginx on port 8080
+  # Welcome to nginx on port 8090
   nginx:
-    container_name: "nginx"
+    container_name: "nginx-1"
     image: nginx
     ports:
-      - "8080:80"
+      - "8090:80"
     volumes:
       - "./nginx/index.html:/usr/share/nginx/html/index.html"
 
   # varnish
-  # 8442 is http
-  # 8443 is proxy protocol
+  # 7442 is http
+  # 7443 is proxy protocol
   varnish:
-    container_name: "varnish"
+    container_name: "varnish-1"
     # image: "varnish:6"
     # image: "varnish:6.0.3"
-    image: "varnish:6.0.7-1"
+    # image: "varnish:6.0.7-1"
+    # image: "emgag/varnish:6.0.7"
+    image: "runelangseid/varnish:6.0.7"
     ports:
-      - "8442:80"
-      - "8443:8443"
+      - "7442:80"
+      - "7443:8443"
     volumes:
       - "./varnish/default.vcl:/etc/varnish/default.vcl:ro"
 
@@ -28,7 +30,7 @@ services:
   # 8180 is http
   # 8181 contacts varnish using proxy protocol
   haproxy:
-    container_name: "haproxy"
+    container_name: "haproxy-1"
     image: "haproxy"
     ports:
       - "8180:80"
@@ -38,10 +40,10 @@ services:
 
   traefik:
     image: "traefik:v2.4"
-    container_name: "traefik"
+    container_name: "traefik-1"
     ports:
-      - "80:80"
-      - "81:81"
+      - "680:80"
+      - "681:81"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - ./traefik/config:/etc/traefik/config:ro
