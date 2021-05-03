@@ -16,6 +16,8 @@ entryPoints:
     address: ":80"
   proxyprotocol:
     address: ":81"
+  proxyprotocolexternal:
+    address: ":82"
 
 providers:
   file:

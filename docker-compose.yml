@@ -44,6 +44,7 @@ services:
     ports:
       - "680:80"
       - "681:81"
+      - "682:82"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - ./traefik/config:/etc/traefik/config:ro

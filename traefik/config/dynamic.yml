@@ -6,6 +6,12 @@ tcp:
           version: 2
         servers:
         - address: "varnish:8443"
+    varnishexternal:
+      loadBalancer:
+        proxyProtocol:
+          version: 2
+        servers:
+        - address: "xxx:8443"
 
   routers:
     varnish-router:
@@ -14,6 +20,13 @@ tcp:
       service: "varnish"
       entrypoints:
         - "proxyprotocol"
+
+    varnishexternal-router:
+      #rule: "PathPrefix(`/`)"
+      rule: "HostSNI(`*`)"
+      service: "varnishexternal"
+      entrypoints:
+        - "proxyprotocolexternal"
 
 http:
   routers:
