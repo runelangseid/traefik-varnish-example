@@ -6,7 +6,7 @@ services:
     container_name: "nginx-1"
     image: nginx
     ports:
-      - "8090:80"
+      - "9090:80"
     volumes:
       - "./nginx/index.html:/usr/share/nginx/html/index.html"
 
