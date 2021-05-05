@@ -17,9 +17,9 @@ services:
     container_name: "varnish-1"
     # image: "varnish:6"
     # image: "varnish:6.0.3"
-    # image: "varnish:6.0.7-1"
+    image: "varnish:6.0.7-1" # official varnish image, proxy at :8443
     # image: "emgag/varnish:6.0.7"
-    image: "runelangseid/varnish:6.0.7"
+    # image: "runelangseid/varnish:6.0.7"
     ports:
       - "7442:80"
       - "7443:8443"

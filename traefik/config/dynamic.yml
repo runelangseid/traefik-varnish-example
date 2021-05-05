@@ -15,14 +15,14 @@ tcp:
 
   routers:
     varnish-router:
-      #rule: "PathPrefix(`/`)"
       rule: "HostSNI(`*`)"
       service: "varnish"
       entrypoints:
         - "proxyprotocol"
+      # this makes thing difficult
+      # tls: {}
 
     varnishexternal-router:
-      #rule: "PathPrefix(`/`)"
       rule: "HostSNI(`*`)"
       service: "varnishexternal"
       entrypoints:
@@ -32,7 +32,6 @@ http:
   routers:
     http-router:
       rule: "PathPrefix(`/`)"
-      #rule: "Host(`example.com`) || Host(`www.example.com`)"
       service: "varnish"
       entrypoints:
         - "http"
